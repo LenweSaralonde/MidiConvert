@@ -9,12 +9,14 @@ function parseHeader(midiJson){
 	}
 	for (var i = 0; i < midiJson.tracks.length; i++){
 		var track = midiJson.tracks[i]
+		var time = 0
 		for (var j = 0; j < track.length; j++){
 			var datum = track[j]
-			if (datum.type === "meta"){
+			time += datum.deltaTime
+			if (datum.type === "meta") {
 				if (datum.subtype === "timeSignature"){
 					ret.timeSignature = [datum.numerator, datum.denominator]
-				} else if (datum.subtype === "setTempo"){
+				} else if ((datum.subtype === "setTempo") && (time === 0)) {
 					if (!ret.bpm){
 						ret.bpm = 60000000 / datum.microsecondsPerBeat
 					}

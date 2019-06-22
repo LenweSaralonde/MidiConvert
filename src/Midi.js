@@ -84,7 +84,9 @@ class Midi {
 		this.header = parseHeader(midiData)
 
 		// Tempo changes
-		const tempoChanges = []
+		const tempoChanges = [
+			{time: 0, value: this.header.bpm},
+		]
 
 		// Tracks and channel instruments
 		const tracks = []
