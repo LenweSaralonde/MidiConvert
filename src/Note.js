@@ -12,7 +12,7 @@ class Note{
 		return note
 	}
 
-	constructor(midi, time, duration=0, velocity=1, channel, instrument){
+	constructor(midi, time, duration=null, velocity=1, channel, instrument){
 
 		/**
 		 * The MIDI note number

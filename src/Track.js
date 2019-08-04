@@ -70,7 +70,7 @@ class Track {
 		this.midiType = 1
 	}
 
-	note(midi, time, duration=0, velocity=1){
+	note(midi, time, duration=null, velocity=1){
 		const note = new Note(midi, time, duration, velocity)
 		BinaryInsert(this.notes, note)
 		return this
@@ -87,7 +87,7 @@ class Track {
 	 * @return {Track} this
 	 */
 	noteOn(midi, time, velocity=1, channel, instrument){
-		const note = new Note(midi, time, 0, velocity, channel, instrument)
+		const note = new Note(midi, time, null, velocity, channel, instrument)
 		BinaryInsert(this.notes, note)
 		return this
 	}
@@ -103,7 +103,7 @@ class Track {
 	noteOff(midi, time, channel){
 		for (let i = 0; i < this.notes.length; i++){
 			let note = this.notes[i]
-			if (note.match(midi) && note.channel === channel && note.duration === 0){
+			if (note.match(midi) && note.channel === channel && (note.duration === null)) {
 				note.noteOff = time
 				break;
 			}
