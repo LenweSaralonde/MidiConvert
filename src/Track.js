@@ -101,11 +101,11 @@ class Track {
 	 * @return {Track} this
 	 */
 	noteOff(midi, time, channel){
-		for (let i = 0; i < this.notes.length; i++){
+		for (let i = this.notes.length - 1; i >= 0; i--) {
 			let note = this.notes[i]
-			if (note.match(midi) && note.channel === channel && (note.duration === null)) {
+			if (note.match(midi) && note.channel === channel && note.duration === null) {
 				note.noteOff = time
-				break;
+				break
 			}
 		}
 		return this
